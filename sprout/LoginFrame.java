@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.DriverManager;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.*;
 
 public class LoginFrame extends JFrame implements ActionListener {
     private JTextField usernameField;
@@ -68,14 +73,38 @@ public class LoginFrame extends JFrame implements ActionListener {
         if (e.getSource() == loginButton) {
             String username = usernameField.getText();
             String password = String.valueOf(passwordField.getPassword());
+            String query = String.format("SELECT PASSWORD FROM LEARNER WHERE USERNAME = '%s' ",username);
+            String db_user = "your_username" ;
+            String db_password = "your_password";
+
+            //jdbc connection
+            try(Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/sprout",db_user,db_password)){
+
+                Statement st = conn.createStatement();
+                ResultSet resultSet = st.executeQuery(query);
+               
+                boolean logged = false;
+                if(resultSet.next()){
+                    String check_password = resultSet.getString(1);
+                    if (check_password.equals(password)) {
+                    JOptionPane.showMessageDialog(this, "Login successful!");
+                    logged = true;
+                    // You can open a new window or perform other actions upon successful login
+                    } 
+                    
+                 }
+
+                 if(!logged) {
+                    JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
+                 }
+             }
+            catch(Exception x){
+            x.printStackTrace();
+            }
+
 
             // Perform authentication (replace this with your actual authentication logic)
-            if ("admin".equals(username) && "admin123".equals(password)) {
-                JOptionPane.showMessageDialog(this, "Login successful!");
-                // You can open a new window or perform other actions upon successful login
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid username or password. Please try again.");
-            }
+            
         }
     }
 
