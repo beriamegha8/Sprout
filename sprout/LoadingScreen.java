@@ -21,43 +21,39 @@ public class LoadingScreen extends JFrame{
         setSize(1280,720);
         setLocation(35,30);
         setLayout(new BorderLayout());
-        
-        ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("sprout/icons/systemIcon.png"));
-        setIconImage(icon.getImage());
-        
+
+      
+
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
         add(mainPanel, BorderLayout.CENTER);
-        
-        
-        upperPic = new JLabel();
-        upperPic.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/loadingIconImg.png")));
-        upperPic.setBounds(460, 70, 360, 343);
-        mainPanel.add(upperPic);
-        
+
+
+      
+
         loadingLbl = new JLabel("Loading...");
         loadingLbl.setHorizontalAlignment(JLabel.LEFT);
         loadingLbl.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
         loadingLbl.setForeground(Color.WHITE);
         loadingLbl.setBounds(5, 630, 250, 30);
-        
+
         percentageLbl = new JLabel("0 %");
         percentageLbl.setHorizontalAlignment(JLabel.RIGHT);
         percentageLbl.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
         percentageLbl.setForeground(Color.WHITE);
         percentageLbl.setBounds(1160, 630, 100, 30);
-        
+
         mainPanel.add(loadingLbl);
         mainPanel.add(percentageLbl);
-        
+
         textLbl = new JLabel("Welcome To E-Learning System");
         textLbl.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 55));
         textLbl.setForeground(Color.WHITE);
         textLbl.setBounds(245, 420, 850, 80);
         mainPanel.add(textLbl);
-        
+
         backgroundPic = new JLabel();
-        backgroundPic.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/backgroundOG.jpg")));
+        backgroundPic.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/logo-color.png")));
         backgroundPic.setBounds(0, 0, getWidth(), getHeight()); // Set bounds to match JFrame size
         mainPanel.add(backgroundPic);
 
@@ -68,12 +64,12 @@ public class LoadingScreen extends JFrame{
         loadingBar.setStringPainted(true);
         loadingBar.setForeground(Color.GREEN);
         add(loadingBar, BorderLayout.SOUTH);
-        
+
         // Settings for the frame
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        
+
         Run();
     }
     public void Run(){
@@ -82,21 +78,21 @@ public class LoadingScreen extends JFrame{
                 Thread.sleep(100);
                 loadingBar.setValue(i);
                 percentageLbl.setText(i+ " %");
-                
+
                 if(i==10){
-                   loadingLbl.setText("Turning On Modules...");
+                    loadingLbl.setText("Turning On Modules...");
                 }
                 else if(i==20){
-                   loadingLbl.setText("Loading Modules...");
+                    loadingLbl.setText("Loading Modules...");
                 }
                 else if(i==50){
-                   loadingLbl.setText("Connecting to Database...");
+                    loadingLbl.setText("Connecting to Database...");
                 }
                 else if(i==70){
-                   loadingLbl.setText("Connection Successfull !");
+                    loadingLbl.setText("Connection Successfull !");
                 }
                 else if(i==80){
-                   loadingLbl.setText("Lauching Application...");
+                    loadingLbl.setText("Lauching Application...");
                 }
                 else if(i==100){
                     new Main();
@@ -109,7 +105,7 @@ public class LoadingScreen extends JFrame{
         }
     }
     public static void main(String[] args) {
-       new LoadingScreen();
+        new LoadingScreen();
     }
-    
+
 }
