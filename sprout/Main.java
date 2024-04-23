@@ -106,6 +106,7 @@ public class Main extends JFrame implements ActionListener{
         Color oliveGreen = new Color(85, 107, 47);
 
         //Main Center Code
+
         LoginButton = new JButton("Login");
         LoginButton.setHorizontalAlignment(JButton.CENTER);
         LoginButton.setBounds(420, 15, 150, 70); 

@@ -22,14 +22,9 @@ public class LoadingScreen extends JFrame{
         setLocation(35,30);
         setLayout(new BorderLayout());
 
-      
-
         mainPanel = new JPanel();
         mainPanel.setLayout(null);
         add(mainPanel, BorderLayout.CENTER);
-
-
-      
 
         loadingLbl = new JLabel("Loading...");
         loadingLbl.setHorizontalAlignment(JLabel.LEFT);
