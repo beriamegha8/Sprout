@@ -19,8 +19,9 @@ Primary Key (Adminid)
 ) ENGINE = InnoDB DEFAULT CHARSET = latin1;
 
 Insert Into Admin (fname, lname, Email_ID, username, password, Gender)
-Values('Megha', 'Beria', 'Megha@admin.com', 'admin', 'admin', 'Female');
-
+Values('Megha', 'Beria', 'Megha@admin.com', 'admin', 'admin', 'Female'),
+    ('Maryam', 'Bahlooli', 'Maryam@admin.com', 'admin2', 'admin2', 'Female'),
+    ('Moksh', 'Oswal', 'Moksh@admin.com', 'admin3', 'admin3', 'Male');
 
 create Table Student(
 stdID int Not Null AUTO_INCREMENT,
