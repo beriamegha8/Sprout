@@ -2,6 +2,7 @@ package sprout;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -21,20 +22,20 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
-import java.awt.Dimension;
 
-public class Main extends JFrame implements ActionListener{
+public class Main extends JFrame implements ActionListener {
     JPanel headerPanel, mainPanel, footerPanel;
     JButton LoginButton, SignupButton;
-    JLabel title, footerLbl, mainScreenLbl;
+    JLabel title, footerLbl, mainScreenLbl, clock;
     JMenuBar menuBar;
     JMenu file, about;
-    JMenuItem aboutProject,aboutDevelopers, exit;
+    JMenuItem aboutProject, aboutDevelopers, exit;
     public static Main main;
-    public Main(){
+
+    public Main() {
         super("E-Learning System");
-        setSize(1280,720);
-        setLocation(35,30);
+        setSize(1280, 720);
+        setLocation(35, 30);
         setLayout(new BorderLayout());
         this.main = this;
 
@@ -52,7 +53,6 @@ public class Main extends JFrame implements ActionListener{
         footerPanel = new JPanel(new BorderLayout());
         add(footerPanel, BorderLayout.SOUTH);
 
-
         //Header Code
         aboutProject = new JMenuItem("About Project");
         aboutDevelopers = new JMenuItem("About Developers");
@@ -64,31 +64,71 @@ public class Main extends JFrame implements ActionListener{
         exit.setAccelerator(ctrlE);
         file = new JMenu("File");
         file.add(exit);
-        about.add(aboutProject); about.add(aboutDevelopers);
+        about.add(aboutProject);
+        about.add(aboutDevelopers);
         exit.addActionListener(this);
         aboutDevelopers.addActionListener(this);
         aboutProject.addActionListener(this);
         menuBar.add(file);
         menuBar.add(about);
+        headerPanel.add(menuBar, BorderLayout.NORTH);
 
-
-        headerPanel.add(menuBar,BorderLayout.NORTH);
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("sprout/icons/header.png"));
-        Image i2 = i1.getImage().getScaledInstance(1280 ,121 ,Image.SCALE_DEFAULT);
-        ImageIcon i3 =  new ImageIcon(i2);
+        Image i2 = i1.getImage().getScaledInstance(1280, 121, Image.SCALE_DEFAULT);
+        ImageIcon i3 = new ImageIcon(i2);
         title = new JLabel(i3);
         headerPanel.add(title, BorderLayout.CENTER);
 
+        //Main Center Code
+        Color oliveGreen = new Color(85, 107, 47);
 
-        JLabel clock = new JLabel();
+        LoginButton = new JButton("Login");
+        LoginButton.setHorizontalAlignment(JButton.CENTER);
+        LoginButton.setBounds(420, 15, 150, 70);
+        LoginButton.setFont(new Font(Font.SERIF, Font.BOLD, 25));
+        LoginButton.setBackground(oliveGreen);
+        LoginButton.setForeground(Color.white);
+        LoginButton.setHorizontalTextPosition(JButton.CENTER);
+        LoginButton.setVerticalTextPosition(JButton.BOTTOM);
+        LoginButton.addActionListener(this);
+
+        SignupButton = new JButton("SignUp");
+        SignupButton.setHorizontalAlignment(JButton.CENTER);
+        SignupButton.setBounds(715, 15, 150, 70);
+        SignupButton.setFont(new Font(Font.SERIF, Font.BOLD, 25));
+        SignupButton.setBackground(oliveGreen);
+        SignupButton.setForeground(Color.white);
+        SignupButton.setHorizontalTextPosition(JButton.CENTER);
+        SignupButton.setVerticalTextPosition(JButton.BOTTOM);
+        SignupButton.addActionListener(this);
+
+        ImageIcon mainPic1 = new ImageIcon(ClassLoader.getSystemResource("sprout/icons/logonew.png"));
+        Image mainPic2 = mainPic1.getImage().getScaledInstance(500, 500, Image.SCALE_DEFAULT);
+        ImageIcon mainPic3 = new ImageIcon(mainPic2);
+        mainScreenLbl = new JLabel(mainPic3);
+        mainScreenLbl.setBounds(350, 50, 500, 500);
+
+        // add to mainPanel
+        mainPanel.add(LoginButton);
+        mainPanel.add(SignupButton);
+        mainPanel.add(mainScreenLbl);
+
+        // Footer Panel Code
+        JPanel footerColorPanel = new JPanel();
+        footerColorPanel.setBackground(oliveGreen);
+        footerColorPanel.setPreferredSize(new Dimension(1280, 100));
+
+        footerPanel.add(footerColorPanel, BorderLayout.SOUTH);
+
+        // Display clock in the footer
+        clock = new JLabel();
         clock.setHorizontalAlignment(JLabel.RIGHT);
         DateFormat df = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa");
         Calendar calobj = Calendar.getInstance();
         clock.setText(df.format(calobj.getTime()));
-        clock.setFont(new Font(Font.SERIF,Font.BOLD, 19));
-        clock.setForeground(new Color(14,168,29));
-        headerPanel.add(clock, BorderLayout.SOUTH);
-
+        clock.setFont(new Font(Font.SERIF, Font.BOLD, 19));
+        clock.setForeground(new Color(14, 168, 29));
+        footerPanel.add(clock, BorderLayout.NORTH);
 
         // A Swing timer fires one or more action events after a specified delay.
         Timer t = new Timer(500, new ActionListener() {
@@ -103,75 +143,28 @@ public class Main extends JFrame implements ActionListener{
         t.setCoalesce(true);
         t.setInitialDelay(0);
         t.start();
-        Color oliveGreen = new Color(85, 107, 47);
-
-        //Main Center Code
-
-        LoginButton = new JButton("Login");
-        LoginButton.setHorizontalAlignment(JButton.CENTER);
-        LoginButton.setBounds(420, 15, 150, 70); 
-        LoginButton.setFont(new Font(Font.SERIF, Font.BOLD, 25)); 
-        LoginButton.setBackground(new Color(21, 76, 121));
-        LoginButton.setForeground(oliveGreen);
-        LoginButton.setHorizontalTextPosition(JButton.CENTER);
-        LoginButton.setVerticalTextPosition(JButton.BOTTOM);
-        LoginButton.addActionListener(this);
-
-        SignupButton = new JButton("SignUp");
-        SignupButton.setHorizontalAlignment(JButton.CENTER);
-        SignupButton.setBounds(715, 15, 150, 70); 
-        SignupButton.setFont(new Font(Font.SERIF, Font.BOLD, 25));
-        SignupButton.setBackground(new Color(21, 76, 121));
-        SignupButton.setForeground(oliveGreen);
-        SignupButton.setHorizontalTextPosition(JButton.CENTER);
-        SignupButton.setVerticalTextPosition(JButton.BOTTOM);
-        SignupButton.addActionListener(this);
-
-
-        ImageIcon mainPic1 = new ImageIcon(ClassLoader.getSystemResource("sprout/icons/logonew.png"));
-        Image mainPic2 = mainPic1.getImage().getScaledInstance(500 ,500 ,Image.SCALE_DEFAULT);
-        ImageIcon mainPic3 =  new ImageIcon(mainPic2);
-        mainScreenLbl = new JLabel(mainPic3);
-        mainScreenLbl.setBounds(350,50,500,500);
-
-
-        // add to mainPanel
-        mainPanel.add(LoginButton);
-        mainPanel.add(SignupButton);
-        mainPanel.add(mainScreenLbl);
-
-        // Footer Panel Code
-        JPanel footerColorPanel = new JPanel();
-        footerColorPanel.setBackground(oliveGreen); 
-        footerColorPanel.setPreferredSize(new Dimension(1280, 100));
-
-        footerPanel.add(footerColorPanel, BorderLayout.SOUTH);
-
-
 
         // Settings for the frame
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
+
     @Override
-    public void actionPerformed(ActionEvent ae){
-        if(ae.getSource() == LoginButton){
+    public void actionPerformed(ActionEvent ae) {
+        if (ae.getSource() == LoginButton) {
             new Login();
-        }
-        else if(ae.getSource() == SignupButton){
+        } else if (ae.getSource() == SignupButton) {
             new Signup();
-        }
-        else if (ae.getSource() == aboutDevelopers){
+        } else if (ae.getSource() == aboutDevelopers) {
             new AboutDevelopers();
-        }
-        else if (ae.getSource() == aboutProject){
+        } else if (ae.getSource() == aboutProject) {
             new AboutProject();
-        }
-        else if(ae.getSource() == exit){
+        } else if (ae.getSource() == exit) {
             System.exit(0);
         }
     }
+
     public static void main(String[] args) {
         new Main();
     }
