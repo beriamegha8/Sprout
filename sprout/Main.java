@@ -34,8 +34,13 @@ public class Main extends JFrame implements ActionListener {
 
     public Main() {
         super("E-Learning System");
+        Font titleFont = new Font("Arial", Font.BOLD, 24); // Example: Arial font, bold, size 24
+        setFont(titleFont);
+
+        // Other frame settings
         setSize(1280, 720);
-        setLocation(35, 30);
+        //setLocation(35, 30);
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
         this.main = this;
 

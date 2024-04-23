@@ -21,7 +21,6 @@ public class AboutProject extends JFrame{
         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("sprout/icons/systemIcon.png"));
         setIconImage(icon.getImage());
         Color oliveGreen = new Color(85, 107, 47);
-
         title = new JLabel("E-Learning System", JLabel.CENTER);
         title.setFont(new Font(Font.SERIF, Font.BOLD, 25));
         title.setBackground(oliveGreen);
@@ -29,20 +28,22 @@ public class AboutProject extends JFrame{
         title.setOpaque(true);
         add(title, BorderLayout.NORTH);
 
-
-        String txt = "\t *  E-Learning System is a desktop-based Windows application "
+        Color lightOliveGreen = new Color(192, 208, 160);
+        Font font = new Font(Font.SERIF, Font.PLAIN, 22);
+        String txt = "*E-Learning System is a desktop-based Windows application "
                 + "developed in Java with Swing and AWT. This project aims at serving Students and Teachers in "
                 + "Online based learning. \n\n" +
-                "\t* Admins can add subjects, Teachers can add courses in a particular subject and "
+                "*Admins can add subjects, Teachers can add courses in a particular subject and "
                 + "Students can Enroll courses and study them, and also Students can message other participants in a "
                 + "particular course except the Teacher teaching that course.";
 
         aboutText = new JTextArea(txt);
         aboutText.setLineWrap(true);
         aboutText.setWrapStyleWord(true);
-        aboutText.setFont(new Font(Font.DIALOG, Font.ITALIC, 19));
-        aboutText.setForeground(oliveGreen);
-        aboutText.setBackground(Color.WHITE);
+        //aboutText.setFont(new Font(Font.DIALOG, Font.ITALIC, 19));
+        aboutText.setFont(font);
+        aboutText.setForeground(Color.BLACK);
+        aboutText.setBackground(lightOliveGreen);
         aboutText.setBorder(new LineBorder(Color.lightGray, 2, true));
         aboutText.setEditable(false);
         add(aboutText, BorderLayout.CENTER);
