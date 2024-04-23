@@ -1,5 +1,6 @@
 package sprout.Student;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -41,6 +42,7 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
     JLabel fnameValidation, LnameValidation, emailValidation, userNameValidation, passwordValidation, profilePicLbl;
     FileInputStream fis = null;
     File f = null;
+    Color oliveGreen = new Color(85, 107, 47);
     public StudentSignUp() {
         super("Student SignUp");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,6 +63,8 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
         uploadPicBtn.setBounds(470, 120, 75, 23);
         uploadPicBtn.addActionListener(this);
         contentPane.add(uploadPicBtn);
+        uploadPicBtn.setBackground(oliveGreen);
+        uploadPicBtn.setForeground(Color.white);
 
 
         JLabel lblName = new JLabel("First name");
@@ -159,6 +163,8 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
         registerButton.setBounds(410, 400, 228, 60);
         registerButton.addActionListener((ActionListener) this);
         contentPane.add(registerButton);
+        registerButton.setBackground(oliveGreen);
+        registerButton.setForeground(Color.white);
         
         setVisible(true);
     }

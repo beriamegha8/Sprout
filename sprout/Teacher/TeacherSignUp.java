@@ -1,5 +1,6 @@
 package sprout.Teacher;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -41,6 +42,7 @@ public class TeacherSignUp extends JFrame implements ActionListener, FocusListen
     JLabel fnameValidation, LnameValidation, emailValidation, userNameValidation, passwordValidation, profilePicLbl;
     FileInputStream fis = null;
     File f = null;
+    Color oliveGreen = new Color(85, 107, 47);
     public TeacherSignUp(){
         super("Teacher SignUp");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -63,6 +65,8 @@ public class TeacherSignUp extends JFrame implements ActionListener, FocusListen
         uploadPicBtn.setBounds(470, 120, 75, 23);
         uploadPicBtn.addActionListener(this);
         contentPane.add(uploadPicBtn);
+        uploadPicBtn.setBackground(oliveGreen);
+        uploadPicBtn.setForeground(Color.white);
 
         JLabel lblName = new JLabel("First name");
         lblName.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -160,6 +164,13 @@ public class TeacherSignUp extends JFrame implements ActionListener, FocusListen
         registerButton.setBounds(410, 400, 228, 60);
         registerButton.addActionListener((ActionListener) this);
         contentPane.add(registerButton);
+        registerButton.setBackground(oliveGreen);
+        registerButton.setForeground(Color.white);
+        
+        profilePicLbl = new JLabel();
+        profilePicLbl.setBounds(456, 18, 96, 96);
+        profilePicLbl.setIcon(resizeImage("sprout/icons/uploadPicIcon.png"));
+        contentPane.add(profilePicLbl);
         
         setVisible(true);
     }

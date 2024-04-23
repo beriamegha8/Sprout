@@ -50,19 +50,19 @@ public class StudentLogin extends JFrame implements ActionListener{
         l3.setBounds(350,20,150,150);
         add(l3);
 
-
+        Color oliveGreen = new Color(85, 107, 47);
         b1 = new JButton("Login");
         b1.setBounds(40,140,120,30);
         b1.setFont(new Font("serif",Font.BOLD,15));
         b1.addActionListener(this);
-        b1.setBackground(Color.BLACK);
+        b1.setBackground(oliveGreen);
         b1.setForeground(Color.WHITE);
         add(b1);
 
         b2=new JButton("Cancel");
         b2.setBounds(180,140,120,30);
         b2.setFont(new Font("serif",Font.BOLD,15));
-        b2.setBackground(Color.BLACK);
+        b2.setBackground(oliveGreen);
         b2.setForeground(Color.WHITE);
         add(b2);
         b2.addActionListener(this);

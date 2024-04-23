@@ -30,26 +30,33 @@ public class Login extends JFrame implements ActionListener{
         panel = new JPanel();
         panel.setLayout(null);
         
+        Color oliveGreen = new Color(85, 107, 47);
         title = new JLabel("Login Here", JLabel.CENTER);
         title.setFont(title.getFont().deriveFont (22.0f));
         title.setBackground(Color.LIGHT_GRAY);
-        title.setForeground(Color.BLACK);
+        title.setForeground(oliveGreen);
         title.setOpaque(true);
         
         studentLoginButton = new  JButton("Student Login");
         studentLoginButton.addActionListener((ActionListener) this);
         studentLoginButton.setHorizontalAlignment(JButton.CENTER);
         studentLoginButton.setBounds(115, 15, 120, 40);
+        studentLoginButton.setBackground(oliveGreen);
+        studentLoginButton.setForeground(Color.WHITE);
         
         teacherLoginButton = new  JButton("Teacher Login");
         teacherLoginButton.addActionListener((ActionListener) this);
         teacherLoginButton.setHorizontalAlignment(JButton.CENTER);
         teacherLoginButton.setBounds(115, 75, 120, 40);
+        teacherLoginButton.setBackground(oliveGreen);
+        teacherLoginButton.setForeground(Color.WHITE);
         
         adminLoginButton = new  JButton("Admin Login");
         adminLoginButton.addActionListener((ActionListener) this);
         adminLoginButton.setHorizontalAlignment(JButton.CENTER);
         adminLoginButton.setBounds(115, 135, 120, 40);
+        adminLoginButton.setBackground(oliveGreen);
+        adminLoginButton.setForeground(Color.WHITE);
         
         // add to panel
         panel.add(studentLoginButton);

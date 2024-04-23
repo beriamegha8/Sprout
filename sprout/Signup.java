@@ -28,9 +28,10 @@ public class Signup extends JFrame implements ActionListener{
         panel = new JPanel();
         panel.setLayout(null);
         
+        Color oliveGreen = new Color(85, 107, 47);
         title = new JLabel("SignUp Here", JLabel.CENTER);
         title.setBackground(Color.LIGHT_GRAY);
-        title.setForeground(Color.BLACK);
+        title.setForeground(oliveGreen);
         title.setOpaque(true);
         title.setFont(title.getFont ().deriveFont (22.0f));
         
@@ -39,11 +40,15 @@ public class Signup extends JFrame implements ActionListener{
         studentSignUpButton.addActionListener((ActionListener) this);
         studentSignUpButton.setHorizontalAlignment(JButton.CENTER);
         studentSignUpButton.setBounds(115, 15, 130, 40);
+        studentSignUpButton.setBackground(oliveGreen);
+        studentSignUpButton.setForeground(Color.WHITE);
         
         teacherSignUpButton = new  JButton("Teacher SignUp");
         teacherSignUpButton.addActionListener((ActionListener) this);
         teacherSignUpButton.setHorizontalAlignment(JButton.CENTER);
         teacherSignUpButton.setBounds(115, 95, 130, 40);
+        teacherSignUpButton.setBackground(oliveGreen);
+        teacherSignUpButton.setForeground(Color.WHITE);
 
         
         
