@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
+import java.util.Arrays;
+
 import sprout.DBConnection;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -26,7 +28,7 @@ public class DeleteSubject extends JFrame implements ActionListener{
         
         title = new JLabel("Delete Subject", JLabel.CENTER);
         title.setFont(title.getFont().deriveFont (22.0f));
-        title.setBackground(Color.LIGHT_GRAY);
+        title.setBackground(Color.BLUE);
         title.setForeground(Color.BLACK);
         title.setOpaque(true);
         add(title, BorderLayout.NORTH);
@@ -41,10 +43,13 @@ public class DeleteSubject extends JFrame implements ActionListener{
         subjectCbLbl.setHorizontalAlignment(JLabel.CENTER);
         middlePanel.add(subjectCbLbl);
 
-        subjectsCb = new JComboBox(this.getSubjects());
+        String[] manual = this.getSubjects();
+        subjectsCb = new JComboBox(manual);
         subjectsCb.setSelectedIndex(-1);
         subjectsCb.setBounds(200, 30, 140, 28);
         subjectsCb.addActionListener(this);
+        subjectsCb.setForeground(Color.black);
+        subjectsCb.setBackground(Color.white);
         middlePanel.add(subjectsCb);
         
         deleteBtn = new JButton("Delete");
@@ -60,25 +65,31 @@ public class DeleteSubject extends JFrame implements ActionListener{
         setLocation(420,320);
         setVisible(true);
     }
-    private String[] getSubjects(){
+    private String[] getSubjects() {
         String[] subjectsData = null;
-        try{
+        try {
             DBConnection c1 = new DBConnection();
+            String q1 = "SELECT count(*) FROM Subjects";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int count = Integer.valueOf(cnt.getString(1));
+            cnt.close();
 
-            String q = "select * from Subjects";
-
-            ResultSet rs = c1.s.executeQuery(q);
-            int rowCount = 0;
-            while(rs.next())
-                rowCount++;
-            subjectsData = new String[rowCount];
-            rs.beforeFirst();
-            int i=0;
-            while(rs.next()){
+            String q2 = "SELECT * FROM Subjects";
+            ResultSet rs = c1.s.executeQuery(q2);
+            
+            
+            System.out.println("Number of subjects retrieved from the database: " + count);
+    
+            subjectsData = new String[count];
+            
+            int i = 0;
+            while (rs.next()) {
                 subjectsData[i] = rs.getString("Name");
                 i++;
             }
-        }catch(Exception e){
+            System.out.println("Subjects retrieved from the database: " + Arrays.toString(subjectsData));
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return subjectsData;
