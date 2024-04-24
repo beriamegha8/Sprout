@@ -2,7 +2,7 @@ package sprout.Teacher;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-//import static java.awt.Component.CENTER_ALIGNMENT;
+import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -48,17 +48,19 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         setLayout(new BorderLayout());
         setSize(1280,720);
         setLocation(35,30);
-        
+
         ImageIcon icon = new ImageIcon(ClassLoader.getSystemResource("sprout/icons/systemIcon.png"));
         setIconImage(icon.getImage());
-      
+
+
+        Color oliveGreen = new Color(85, 107, 47);
         sidePanel = new JPanel();
         sidePanel.setLayout(null);
-        sidePanel.setBackground(new Color(0, 26, 195));
+        sidePanel.setBackground(oliveGreen);
         Dimension sidePanelSize = new Dimension(180, 720);
         sidePanel.setPreferredSize(sidePanelSize);
         add(sidePanel, BorderLayout.WEST);
-        
+
         //
         String firstName = null,lastName = null, gender = "";
         byte[] bytImage = null;
@@ -66,7 +68,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
             DBConnection c1 = new DBConnection();
             PreparedStatement ps = c1.c.prepareStatement("select * from Teacher where teacherID = '"+ TeacherLogin.currentTeacherID +"'");
             ResultSet rs = ps.executeQuery();
-            
+
             if(rs.next()){
                 firstName = rs.getString("fname");
                 lastName = rs.getString("lname");
@@ -79,7 +81,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         }catch(HeadlessException | NumberFormatException | SQLException e){
             e.printStackTrace();
         }
-        
+
         //sidePanel Code
         InputStream is = new ByteArrayInputStream(bytImage);
         try {
@@ -94,56 +96,57 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
 
         lblUsername = new JLabel();
         lblUsername.setFont(new Font(Font.SERIF,Font.BOLD, 20));
-        lblUsername.setForeground(new Color(45,255,3));
+        lblUsername.setBackground(Color.WHITE);
+        lblUsername.setForeground(oliveGreen);
         lblUsername.setBounds(20, 98, 150, 40);
         lblUsername.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         lblUsername.setText(firstName + " " + lastName);
         sidePanel.add(lblUsername);
-        
+
         viewProfileBtn = new JButton("View Profile");
         viewProfileBtn.setFont(new Font(Font.SERIF,Font.BOLD, 13));
-        viewProfileBtn.setBackground(Color.BLACK);
-        viewProfileBtn.setForeground(Color.WHITE);
+        viewProfileBtn.setBackground(Color.WHITE);
+        viewProfileBtn.setForeground(oliveGreen);
         viewProfileBtn.setBounds(30, 150, 120, 28);
         viewProfileBtn.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         viewProfileBtn.addActionListener((ActionListener) this);
         sidePanel.add(viewProfileBtn);
-        
-        
+
+
         logoutBtn = new JButton("Logout");
         logoutBtn.setFont(new Font(Font.SERIF,Font.BOLD, 13));
-        logoutBtn.setBackground(Color.BLACK);
-        logoutBtn.setForeground(Color.WHITE);
+        logoutBtn.setBackground(Color.WHITE);
+        logoutBtn.setForeground(oliveGreen);
         logoutBtn.setBounds(30, 600, 120, 28);
         logoutBtn.setHorizontalAlignment((int) CENTER_ALIGNMENT);
         logoutBtn.addActionListener((ActionListener) this);
         sidePanel.add(logoutBtn);
-        
+
         //rightPanel Code
         rightPanel = new JPanel(new BorderLayout());
         add(rightPanel, BorderLayout.CENTER);
-        
+
         JLabel mainTitle = new JLabel("Teacher Module");
         mainTitle.setHorizontalAlignment(JLabel.CENTER);
         mainTitle.setFont(new Font(Font.SERIF,Font.BOLD, 50));
-        mainTitle.setBackground(Color.BLACK);
-        mainTitle.setForeground(Color.WHITE);
+        mainTitle.setBackground(Color.WHITE);
+        mainTitle.setForeground(oliveGreen);
         mainTitle.setOpaque(true);
         rightPanel.add(mainTitle, BorderLayout.NORTH);
-        
+
         buttonsPanel = new JPanel();
         buttonsPanel.setLayout(null);
         rightPanel.add(buttonsPanel, BorderLayout.CENTER);
-        
+
         JLabel buttonSectionTitle = new JLabel("My Account");
         buttonSectionTitle.setFont(new Font(Font.SERIF,Font.BOLD, 25));
-        buttonSectionTitle.setForeground(Color.BLACK);
+        buttonSectionTitle.setForeground(oliveGreen);
         buttonSectionTitle.setHorizontalAlignment(JLabel.LEFT);
         buttonSectionTitle.setBounds(6,6,150,50);
         buttonsPanel.add(buttonSectionTitle);
-       
+
         // 64 is the size of Button Icon https://icons8.com/
-        
+
         b1 = new JButton("Manage Account");
         b1.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/ManageAccount.png")));
         b1.setBounds(250,60,130,90);
@@ -151,7 +154,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         b1.setVerticalTextPosition(JButton.BOTTOM);
         b1.addActionListener((ActionListener) this);
         buttonsPanel.add(b1);
-        
+
         b2 = new JButton("Delete Account");
         b2.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/DeleteAccount.png")));
         b2.setBounds(410,60,130,90);
@@ -159,7 +162,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         b2.setVerticalTextPosition(JButton.BOTTOM);
         b2.addActionListener((ActionListener) this);
         buttonsPanel.add(b2);
-        
+
         // gap to 160 Horizontally
         b3 = new JButton("View Account");
         b3.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/viewAccount.png")));
@@ -168,16 +171,16 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         b3.setVerticalTextPosition(JButton.BOTTOM);
         b3.addActionListener((ActionListener) this);
         buttonsPanel.add(b3);
-        
-        
+
+
         // second Row of Buttons
         JLabel buttonSectionTitle2 = new JLabel("Teacher Operations");
         buttonSectionTitle2.setFont(new Font(Font.SERIF,Font.BOLD, 25));
-        buttonSectionTitle2.setForeground(Color.BLACK);
+        buttonSectionTitle2.setForeground(oliveGreen);
         buttonSectionTitle2.setHorizontalAlignment(JLabel.LEFT);
         buttonSectionTitle2.setBounds(6,150,225,50);
         buttonsPanel.add(buttonSectionTitle2);
-       
+
         // 64 is the size of Button Icon https://icons8.com/
         b4 = new JButton("Add Course");
         b4.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/addSubject.png")));
@@ -186,7 +189,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         b4.setVerticalTextPosition(JButton.BOTTOM);
         b4.addActionListener((ActionListener) this);
         buttonsPanel.add(b4);
-        
+
         b5 = new JButton("View My Students");
         b5.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/viewStudents.png")));
         b5.setBounds(410,210,145,90);
@@ -194,7 +197,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         b5.setVerticalTextPosition(JButton.BOTTOM);
         b5.addActionListener((ActionListener) this);
         buttonsPanel.add(b5);
-        
+
         b6 = new JButton("View My Courses");
         b6.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/myCourses.png")));
         b6.setBounds(570,210,140,90);
@@ -202,7 +205,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         b6.setVerticalTextPosition(JButton.BOTTOM);
         b6.addActionListener((ActionListener) this);
         buttonsPanel.add(b6);
-        
+
         b7 = new JButton("Update Courses");
         b7.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/updateCourse.png")));
         b7.setBounds(250,320,130,90);
@@ -215,7 +218,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setVisible(true);
     }
-        // This code use to resize image to fit lable
+    // This code use to resize image to fit lable
     public ImageIcon resizeImage(BufferedImage bufferedImage){
         int width = bufferedImage.getWidth();
         BufferedImage circleBuffer = new BufferedImage(width, width, BufferedImage.TYPE_INT_ARGB);
@@ -269,11 +272,11 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
                         + "Where teacherID = '"+ TeacherLogin.currentTeacherID +"'";
                 int x = c1.s.executeUpdate(q);
                 if(x == 0){
-                JOptionPane.showMessageDialog(null, "Got an Error");
+                    JOptionPane.showMessageDialog(null, "Got an Error");
                 }else{
                     JOptionPane.showMessageDialog(null, "Loggin Out...");
-                     new Main();
-                     dispose();
+                    new Main();
+                    dispose();
                 }
             }catch(Exception ex){
                 ex.printStackTrace();
@@ -284,7 +287,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
     public void windowStateChanged(WindowEvent e) {
         // normal state
         if ((e.getNewState() & Frame.MAXIMIZED_BOTH) == Frame.NORMAL){
-           logoutBtn.setLocation(30, 600);
+            logoutBtn.setLocation(30, 600);
         }
         // maximized
         else if ((e.getNewState() & Frame.MAXIMIZED_BOTH) == Frame.MAXIMIZED_BOTH){
