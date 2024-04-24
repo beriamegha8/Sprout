@@ -2,7 +2,7 @@ package sprout.Student;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import static java.awt.Component.CENTER_ALIGNMENT;
+//import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -35,7 +35,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
+//import javax.swing.SwingUtilities;
 
 public class Student extends JFrame implements ActionListener, WindowStateListener{
     JPanel sidePanel, rightPanel, buttonsPanel;

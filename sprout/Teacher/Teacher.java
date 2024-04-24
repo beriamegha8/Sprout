@@ -2,7 +2,7 @@ package sprout.Teacher;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import static java.awt.Component.CENTER_ALIGNMENT;
+//import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
