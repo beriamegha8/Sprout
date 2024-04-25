@@ -151,7 +151,7 @@ public class Student extends JFrame implements ActionListener, WindowStateListen
         // 64 is the size of Button Icon https://icons8.com/
 
         b1 = new JButton("Manage Account");
-        b1.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/ManageAccount.png")));
+        b1.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/image 6.jpg")));
         b1.setBounds(250,60,130,90);
         b1.setHorizontalTextPosition(JButton.CENTER);
         b1.setVerticalTextPosition(JButton.BOTTOM);
@@ -159,7 +159,7 @@ public class Student extends JFrame implements ActionListener, WindowStateListen
         buttonsPanel.add(b1);
 
         b2 = new JButton("Delete Account");
-        b2.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/DeleteAccount.png")));
+        b2.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/image 4.jpg")));
         b2.setBounds(410,60,130,90);
         b2.setHorizontalTextPosition(JButton.CENTER);
         b2.setVerticalTextPosition(JButton.BOTTOM);
@@ -168,7 +168,7 @@ public class Student extends JFrame implements ActionListener, WindowStateListen
 
         // gap to 160 Horizontally
         b3 = new JButton("View Account");
-        b3.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/viewAccount.png")));
+        b3.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/image 5.jpg")));
         b3.setBounds(570,60,130,90);
         b3.setHorizontalTextPosition(JButton.CENTER);
         b3.setVerticalTextPosition(JButton.BOTTOM);
@@ -188,7 +188,7 @@ public class Student extends JFrame implements ActionListener, WindowStateListen
         // 64 is the size of Button Icon https://icons8.com/
 
         b4 = new JButton("Enroll Course");
-        b4.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/addSubject.png")));
+        b4.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/image 7.jpg")));
         b4.setBounds(250,210,130,90);
         b4.setHorizontalTextPosition(JButton.CENTER);
         b4.setVerticalTextPosition(JButton.BOTTOM);
@@ -196,7 +196,7 @@ public class Student extends JFrame implements ActionListener, WindowStateListen
         buttonsPanel.add(b4);
 
         b5 = new JButton("Study Course");
-        b5.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/StartCourse.png")));
+        b5.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/image 12.jpg")));
         b5.setBounds(410,210,130,90);
         b5.setHorizontalTextPosition(JButton.CENTER);
         b5.setVerticalTextPosition(JButton.BOTTOM);
@@ -204,7 +204,7 @@ public class Student extends JFrame implements ActionListener, WindowStateListen
         buttonsPanel.add(b5);
 
         b6 = new JButton("Withdraw Course");
-        b6.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/withdrawCourse.png")));
+        b6.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/image 14.jpg")));
         b6.setBounds(570,210,140,90);
         b6.setHorizontalTextPosition(JButton.CENTER);
         b6.setVerticalTextPosition(JButton.BOTTOM);
@@ -212,7 +212,7 @@ public class Student extends JFrame implements ActionListener, WindowStateListen
         buttonsPanel.add(b6);
 
         b7 = new JButton("View Particepants");
-        b7.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/participants.png")));
+        b7.setIcon(new ImageIcon(ClassLoader.getSystemResource("sprout/icons/image 11.jpg")));
         b7.setBounds(250,320,140,90);
         b7.setHorizontalTextPosition(JButton.CENTER);
         b7.setVerticalTextPosition(JButton.BOTTOM);
