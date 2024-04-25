@@ -94,6 +94,7 @@ public class AdminLogin extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Invalid login");
                 }
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error loging into account. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             }
         }

@@ -115,6 +115,7 @@ public class ViewTeachers extends JFrame implements ActionListener{
             }
         }
         catch(SQLException e){
+            System.err.println(e);
             e.printStackTrace();
         }
         finally{

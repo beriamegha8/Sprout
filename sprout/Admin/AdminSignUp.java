@@ -196,6 +196,7 @@ public class AdminSignUp extends JFrame implements ActionListener, FocusListener
                 fis = new FileInputStream(image);
                 profilePicLbl.setIcon(resizeImage(fname));
             } catch (Exception exception) {
+                JOptionPane.showMessageDialog(null, "Error adding profile picture. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }
@@ -240,6 +241,7 @@ public class AdminSignUp extends JFrame implements ActionListener, FocusListener
                             new AdminLogin();
                         }
                     }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, e);
                         e.printStackTrace();
                     }
                     finally{

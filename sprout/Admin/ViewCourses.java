@@ -95,6 +95,7 @@ public class ViewCourses extends JFrame implements ActionListener{
             }
         }
         catch(SQLException e){
+            System.out.println("Error: "+e);
             e.printStackTrace();
         }
         return subjects;
@@ -139,6 +140,7 @@ public class ViewCourses extends JFrame implements ActionListener{
             }
         }
         catch(SQLException e){
+            System.out.println("Error: "+e);
             e.printStackTrace();
         }
         finally{

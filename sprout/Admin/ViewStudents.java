@@ -115,6 +115,7 @@ public class ViewStudents extends JFrame implements ActionListener{
             }
         }
         catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Error retriving students. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         finally{
@@ -157,6 +158,7 @@ public class ViewStudents extends JFrame implements ActionListener{
                     }
                 }
                 catch(HeadlessException | SQLException exception){
+                    JOptionPane.showMessageDialog(null, "Error deleting student. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                 }
                 finally{

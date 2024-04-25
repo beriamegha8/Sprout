@@ -90,6 +90,7 @@ public class DeleteSubject extends JFrame implements ActionListener{
             }
             System.out.println("Subjects retrieved from the database: " + Arrays.toString(subjectsData));
         } catch (Exception e) {
+            System.out.println("Error retrieving subjects from the database: " + e.getMessage());
             e.printStackTrace();
         }
         return subjectsData;
@@ -115,6 +116,7 @@ public class DeleteSubject extends JFrame implements ActionListener{
                         dispose();
                     }
             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error deleting subject. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 }
             finally{

@@ -33,10 +33,10 @@ public class AboutDevelopers extends JFrame {
         title.setOpaque(true);
         add(title, BorderLayout.NORTH);
 
-        String[][] rowData = { { "22070122117", "Megha Beria", "<html>Frontend, Database<br/> and DB Connectivity<html>" },
-                { "22070122116", "Maryam Bahlooli", "<html>Frontend</html>" },
+        String[][] rowData = {{ "22070122116", "Maryam Bahlooli", "<html>Frontend</html>" },
+                { "22070122117", "Megha Beria", "<html>Frontend, Database<br/> and DB Connectivity<html>" },
                 { "22070122126", "Moksh Oswal", "<html>Database Connectivity<br/> and Report</html>" },
-                { "22070122144", "Piyush Pareek", "<html>Report</html>" } };
+                { "22070122144", "Piyush Pareek", "<html>Agile Diagram</html>" } };
         String columns[] = { "PRN", "Name", "Contributions" };
 
         tablePanel = new JPanel(new BorderLayout());

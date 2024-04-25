@@ -23,6 +23,7 @@ public class AdminDeleteAccount{
                         
                     }
             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error deleting account. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 }
             }

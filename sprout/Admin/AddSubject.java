@@ -76,6 +76,7 @@ public class AddSubject extends JFrame implements ActionListener{
                         dispose();
                     }
                 }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error adding subject. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
         }

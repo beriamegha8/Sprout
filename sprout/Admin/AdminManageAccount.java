@@ -112,6 +112,7 @@ public class AdminManageAccount extends JFrame implements ActionListener{
                }
                 ps.close();
             } catch (Exception exception) {
+                System.out.println("Error in uploading image");
                 exception.printStackTrace();
             }
             finally{
