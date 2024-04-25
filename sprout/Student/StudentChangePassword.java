@@ -60,6 +60,7 @@ public class StudentChangePassword extends JFrame implements ActionListener{
                     setVisible(false);
                 }
             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error updating password. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 }
         }

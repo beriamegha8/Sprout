@@ -94,6 +94,7 @@ public class StudyCourse extends JFrame implements ActionListener{
                     i++;
                 }
             }catch(Exception e){
+                System.out.println("Error retriving courses. Please try again later.");
                 e.printStackTrace();
             }
         return coursesData;
@@ -113,6 +114,7 @@ public class StudyCourse extends JFrame implements ActionListener{
                 courseContent.setText(course_Content);
                 
             }catch(Exception e){
+                System.out.println("Error retriving courses. Please try again later.");
                 e.printStackTrace();
             }
         }

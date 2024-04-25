@@ -138,6 +138,7 @@ public class SentBox extends JFrame implements ActionListener, ListSelectionList
                 modelIndex++;
             }
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error loading messages from database. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -169,6 +170,7 @@ public class SentBox extends JFrame implements ActionListener, ListSelectionList
                 }
                     
         }catch(HeadlessException | SQLException exception){
+            JOptionPane.showMessageDialog(null, "Error deleting message. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             exception.printStackTrace();
             }
         }

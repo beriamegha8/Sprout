@@ -70,6 +70,7 @@ public class StudentAccountDetails extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Not Found");
             }
         }catch(HeadlessException | NumberFormatException | SQLException e){
+            JOptionPane.showMessageDialog(null, "Error retrieving data. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         

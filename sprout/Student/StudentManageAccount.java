@@ -113,6 +113,7 @@ public class StudentManageAccount extends JFrame implements ActionListener{
                }
                 ps.close();
             } catch (Exception exception) {
+                JOptionPane.showMessageDialog(null, "Error adding profile picture. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }

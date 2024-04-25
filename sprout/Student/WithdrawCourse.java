@@ -80,6 +80,7 @@ public class WithdrawCourse extends JFrame implements ActionListener{
                 i++;
             }
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         return courseData;
@@ -106,6 +107,7 @@ public class WithdrawCourse extends JFrame implements ActionListener{
                         dispose();
                     }
             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error withdrawing course. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 }
             }

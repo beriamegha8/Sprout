@@ -109,6 +109,7 @@ public class ViewParticipants extends JFrame implements ActionListener{
                 i++;
             }
         }catch(Exception e){
+            System.out.println("Error in getMyCourses");
             e.printStackTrace();
         }
         return Course_Names;
@@ -175,6 +176,7 @@ public class ViewParticipants extends JFrame implements ActionListener{
                          model.addRow(Studentdata[r]);
                 }
             }catch(Exception e){
+                System.out.println("Error retriving courses. Please try again later.");
                 e.printStackTrace();
             }
         }

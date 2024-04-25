@@ -113,6 +113,7 @@ public class EnrollCourse extends JFrame implements ActionListener{
                 i++;
             }
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error retrieving subjects. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         return subjectsData;
@@ -137,6 +138,7 @@ public class EnrollCourse extends JFrame implements ActionListener{
             for(int j=0; j< coursesData.length ; j++)
                 coursesCb.addItem(coursesData[j]);
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -156,6 +158,7 @@ public class EnrollCourse extends JFrame implements ActionListener{
                 subjectID = rs.getInt("Subject_ID");
                 this.getSetCourses(subjectID);
             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
         }
@@ -178,6 +181,7 @@ public class EnrollCourse extends JFrame implements ActionListener{
     //                scroll.setVisible(true);
                     courseDescription.setText(course_Description);
                 }catch(Exception e){
+                    JOptionPane.showMessageDialog(null, "Error retrieving desc. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
             }

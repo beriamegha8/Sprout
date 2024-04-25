@@ -76,6 +76,7 @@ public class StudentChangeName extends JFrame implements ActionListener{
                     setVisible(false);
                 }
             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "An error occurred while updating your name. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 }
         }

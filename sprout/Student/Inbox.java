@@ -138,6 +138,7 @@ public class Inbox extends JFrame implements ActionListener, ListSelectionListen
                 modelIndex++;
             }
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error loading messages. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -169,6 +170,7 @@ public class Inbox extends JFrame implements ActionListener, ListSelectionListen
                 }
                     
         }catch(HeadlessException | SQLException exception){
+            JOptionPane.showMessageDialog(null, "Error deleting message. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             exception.printStackTrace();
             }
         }

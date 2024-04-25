@@ -96,6 +96,7 @@ public class Message extends JFrame implements ActionListener{
                 }
         }
             catch(Exception exception){
+                JOptionPane.showMessageDialog(null, "Error Sending Message. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }
