@@ -98,6 +98,7 @@ public class TeacherLogin extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Invalid login");
                 }
         }catch(HeadlessException | NumberFormatException | SQLException e){
+            JOptionPane.showMessageDialog(null, "Error loging into account. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             }
         }

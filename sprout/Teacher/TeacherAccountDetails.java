@@ -70,6 +70,7 @@ public class TeacherAccountDetails extends JFrame implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Not Found");
             }
         }catch(HeadlessException | NumberFormatException | SQLException e){
+            JOptionPane.showMessageDialog(null, "Error fetching teacher details from the database. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         

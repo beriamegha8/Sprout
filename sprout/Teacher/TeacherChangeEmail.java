@@ -61,6 +61,7 @@ public class TeacherChangeEmail extends JFrame implements ActionListener{
                     setVisible(false);
                 }
             }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error updating email. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 }
         }

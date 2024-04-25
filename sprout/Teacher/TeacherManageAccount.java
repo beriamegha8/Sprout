@@ -114,6 +114,7 @@ public class TeacherManageAccount extends JFrame implements ActionListener{
                }
                 ps.close();
             } catch (Exception exception) {
+                JOptionPane.showMessageDialog(null, "Error updating profile. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }

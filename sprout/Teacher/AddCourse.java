@@ -132,6 +132,7 @@ public class AddCourse extends JFrame implements ActionListener{
                 i++;
             }
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "An error occurred while retrieving subjects from the database. Please check your database connection and try again.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }

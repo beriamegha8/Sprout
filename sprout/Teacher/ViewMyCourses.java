@@ -93,6 +93,7 @@ public class ViewMyCourses extends JFrame implements ActionListener{
                 row++;
             }
         }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error retriving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -119,6 +120,7 @@ public class ViewMyCourses extends JFrame implements ActionListener{
                     }
                 }
                 catch(HeadlessException | SQLException exception){
+                    JOptionPane.showMessageDialog(null, "Error deleting course. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                 }
             }

@@ -108,6 +108,7 @@ public class UpdateCourses extends JFrame implements ActionListener{
             row++;
         }
     }catch(Exception e){
+        JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
         e.printStackTrace();
         }
         return data;
@@ -128,6 +129,7 @@ public class UpdateCourses extends JFrame implements ActionListener{
                 courseContent.setText(rs.getString("Content"));
                 
             }catch(Exception exception){
+                JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }

@@ -2,7 +2,7 @@ package sprout.Teacher;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import static java.awt.Component.CENTER_ALIGNMENT;
+//import static java.awt.Component.CENTER_ALIGNMENT;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
@@ -79,6 +79,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
                 JOptionPane.showMessageDialog(null, "Not Found");
             }
         }catch(HeadlessException | NumberFormatException | SQLException e){
+            JOptionPane.showMessageDialog(null, "An error occurred while fetching teacher information from the database.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
 
@@ -279,6 +280,7 @@ public class Teacher extends JFrame implements ActionListener, WindowStateListen
                     dispose();
                 }
             }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "An error occurred while performing the action.", "Error", JOptionPane.ERROR_MESSAGE);
                 ex.printStackTrace();
             }
         }

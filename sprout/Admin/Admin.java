@@ -101,7 +101,7 @@ public class Admin extends JFrame implements ActionListener, WindowStateListener
         
         lblUsername = new JLabel();
         lblUsername.setFont(new Font(Font.SERIF,Font.BOLD, 20));
-        lblUsername.setBackground(color.WHITE);
+        lblUsername.setBackground(Color.WHITE);
         lblUsername.setForeground(oliveGreen);
         lblUsername.setBounds(20, 98, 150, 40);
         lblUsername.setHorizontalAlignment((int) CENTER_ALIGNMENT);
@@ -110,7 +110,7 @@ public class Admin extends JFrame implements ActionListener, WindowStateListener
         
         viewProfileBtn = new JButton("View Profile");
         viewProfileBtn.setFont(new Font(Font.SERIF,Font.BOLD, 13));
-        viewProfileBtn.setBackground(color.WHITE);
+        viewProfileBtn.setBackground(Color.WHITE);
         viewProfileBtn.setForeground(oliveGreen);
         viewProfileBtn.setBounds(30, 150, 120, 28);
         viewProfileBtn.setHorizontalAlignment((int) CENTER_ALIGNMENT);
@@ -120,7 +120,7 @@ public class Admin extends JFrame implements ActionListener, WindowStateListener
         
         logoutBtn = new JButton("Logout");
         logoutBtn.setFont(new Font(Font.SERIF,Font.BOLD, 13));
-        logoutBtn.setBackground(color.WHITE);
+        logoutBtn.setBackground(Color.WHITE);
         logoutBtn.setForeground(oliveGreen);
         logoutBtn.setBounds(30, 600, 120, 28);
         logoutBtn.setHorizontalAlignment((int) CENTER_ALIGNMENT);
@@ -135,7 +135,7 @@ public class Admin extends JFrame implements ActionListener, WindowStateListener
         JLabel mainTitle = new JLabel("Admin Module");
         mainTitle.setHorizontalAlignment(JLabel.CENTER);
         mainTitle.setFont(new Font(Font.SERIF,Font.BOLD, 50));
-        mainTitle.setBackground(color.WHITE);
+        mainTitle.setBackground(Color.WHITE);
         mainTitle.setForeground(oliveGreen);
         mainTitle.setOpaque(true);
         rightPanel.add(mainTitle, BorderLayout.NORTH);
@@ -146,7 +146,7 @@ public class Admin extends JFrame implements ActionListener, WindowStateListener
         
         JLabel buttonSectionTitle = new JLabel("My Account");
         buttonSectionTitle.setFont(new Font(Font.SERIF,Font.BOLD, 25));
-        buttonSectionTitle.setBackground(color.WHITE);
+        buttonSectionTitle.setBackground(Color.WHITE);
         buttonSectionTitle.setForeground(oliveGreen);
         buttonSectionTitle.setHorizontalAlignment(JLabel.LEFT);
         buttonSectionTitle.setBounds(6,6,150,50);
@@ -183,7 +183,7 @@ public class Admin extends JFrame implements ActionListener, WindowStateListener
         // second Row of Buttons
         JLabel buttonSectionTitle2 = new JLabel("Admin Operations");
         buttonSectionTitle2.setFont(new Font(Font.SERIF,Font.BOLD, 25));
-         buttonSectionTitle2.setBackground(color.WHITE);
+         buttonSectionTitle2.setBackground(Color.WHITE);
         buttonSectionTitle2.setForeground(oliveGreen);
         buttonSectionTitle2.setHorizontalAlignment(JLabel.LEFT);
         buttonSectionTitle2.setBounds(6,150,210,50);

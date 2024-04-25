@@ -88,6 +88,7 @@ public class ViewMyStudents extends JFrame implements ActionListener{
                 i++;
             }
         }catch(Exception e){
+            System.out.println(e);
             e.printStackTrace();
         }
         return Course_Names;
@@ -138,6 +139,7 @@ public class ViewMyStudents extends JFrame implements ActionListener{
                          model.addRow(data[r]);
                 }
             }catch(Exception e){
+                System.out.println(e);
                 e.printStackTrace();
             }
        }

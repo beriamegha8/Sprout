@@ -207,6 +207,7 @@ public class TeacherSignUp extends JFrame implements ActionListener, FocusListen
                 fis = new FileInputStream(image);
                 profilePicLbl.setIcon(resizeImage(fname));
             } catch (Exception exception) {
+                JOptionPane.showMessageDialog(null, "Error adding profile picture. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }
@@ -254,6 +255,7 @@ public class TeacherSignUp extends JFrame implements ActionListener, FocusListen
                             new TeacherLogin();
                         }
                     }catch(Exception e){
+                        JOptionPane.showMessageDialog(null, "Error creating account. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                         e.printStackTrace();
                     }
                 }
