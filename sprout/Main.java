@@ -95,6 +95,7 @@ public class Main extends JFrame implements ActionListener {
         LoginButton.setForeground(Color.white);
         LoginButton.setHorizontalTextPosition(JButton.CENTER);
         LoginButton.setVerticalTextPosition(JButton.BOTTOM);
+        LoginButton.setForeground(oliveGreen);
         LoginButton.addActionListener(this);
 
         SignupButton = new JButton("SignUp");
@@ -105,6 +106,7 @@ public class Main extends JFrame implements ActionListener {
         SignupButton.setForeground(Color.white);
         SignupButton.setHorizontalTextPosition(JButton.CENTER);
         SignupButton.setVerticalTextPosition(JButton.BOTTOM);
+        SignupButton.setForeground(oliveGreen);
         SignupButton.addActionListener(this);
 
         ImageIcon mainPic1 = new ImageIcon(ClassLoader.getSystemResource("sprout/icons/logonew.png"));

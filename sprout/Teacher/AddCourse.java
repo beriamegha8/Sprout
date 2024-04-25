@@ -27,6 +27,7 @@ public class AddCourse extends JFrame implements ActionListener{
     JTextField courseName;
     String SubjectsData[];
     JScrollPane scroll, scroll2;
+    Color oliveGreen = new Color(85, 107, 47);
     public AddCourse(){
         super("Add Course");
         setLayout(new BorderLayout());
@@ -53,6 +54,7 @@ public class AddCourse extends JFrame implements ActionListener{
         subjectsCb.setSelectedIndex(-1);
         subjectsCb.setBounds(200, 30, 140, 28);
         subjectsCb.addActionListener(this);
+        subjectsCb.setForeground(oliveGreen);
         middlePanel.add(subjectsCb);
         
         
@@ -117,22 +119,24 @@ public class AddCourse extends JFrame implements ActionListener{
     private void getSubjects(){
         try{
             DBConnection c1 = new DBConnection();
+            String q1 = "SELECT count(*) FROM Subjects";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
 
             String q = "select * from Subjects";
-
             ResultSet rs = c1.s.executeQuery(q);
-            int rowCount = 0;
-            while(rs.next())
-                rowCount++;
+
+            
             SubjectsData = new String[rowCount];
-            rs.beforeFirst();
+
             int i=0;
             while(rs.next()){
                 SubjectsData[i] = rs.getString("Name");
                 i++;
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "An error occurred while retrieving subjects from the database. Please check your database connection and try again.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }

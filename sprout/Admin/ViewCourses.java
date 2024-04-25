@@ -79,29 +79,35 @@ public class ViewCourses extends JFrame implements ActionListener{
         String[] subjects = null;
         try{
             DBConnection c1 = new DBConnection();
+
+            String q1 = "SELECT count(*) FROM Subjects";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
+
             String q = "select Name From Subjects";
             
             ResultSet rs = c1.s.executeQuery(q); 
-            int    rowCount = 0;
-            while (rs.next())
-                rowCount++;
+            
             subjects = new String[rowCount+1];
             subjects[0] = "";
             int row = 1;
-            rs.beforeFirst();
+
             while (rs.next()) {
                 subjects[row] = rs.getString("Name");
                 row++;
             }
         }
         catch(SQLException e){
-            System.out.println("Error: "+e);
             e.printStackTrace();
         }
         return subjects;
     }
     private void getCourses(String subjectName){
+
         DBConnection c1 = new DBConnection();
+        
         try{
             String q = "select C.Name As Course, CONCAT(T.fname, ' ', T.lname) As Teacher_Name, T.Email_ID As Teacher_Email"
                     + " from Courses As C"
@@ -112,13 +118,16 @@ public class ViewCourses extends JFrame implements ActionListener{
                     + " from Courses As C"
                     + " Inner Join Teacher As T ON T.teacherID = C.teacherID";
             }
-            
+            String q1 = "SELECT count(*) FROM courses";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
+
             ResultSet rs = c1.s.executeQuery(q);
             ResultSetMetaData rsmd = rs.getMetaData();
             int    columnCount  =  rsmd.getColumnCount();
-            int    rowCount = 0;
-            while (rs.next())
-                rowCount++;
+
             // The column count starts from 1
             columnNames = new String[columnCount];
             int CIndex = 1;
@@ -128,7 +137,7 @@ public class ViewCourses extends JFrame implements ActionListener{
             }
             data = new String[rowCount][columnCount];
             int row = 0;
-            rs.beforeFirst();
+
  
             while (rs.next()) {
                 int col = 0;
@@ -140,7 +149,6 @@ public class ViewCourses extends JFrame implements ActionListener{
             }
         }
         catch(SQLException e){
-            System.out.println("Error: "+e);
             e.printStackTrace();
         }
         finally{

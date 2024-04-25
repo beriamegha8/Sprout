@@ -1,5 +1,5 @@
 package sprout.Admin;
-
+import sprout.PasswordHasher;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -41,6 +41,7 @@ public class AdminSignUp extends JFrame implements ActionListener, FocusListener
     JLabel fnameValidation, LnameValidation, emailValidation, userNameValidation, passwordValidation, profilePicLbl;
     FileInputStream fis = null;
     File f = null;
+    static PasswordHasher pwh;
     public AdminSignUp() {
         super("Admin SignUp");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -227,7 +228,7 @@ public class AdminSignUp extends JFrame implements ActionListener, FocusListener
                         ps.setString(2, lastName);
                         ps.setString(3, emailId);
                         ps.setString(4, userName);
-                        ps.setString(5, password);
+                        ps.setString(5, pwh.hashPassword(password));
                         ps.setString(6, genderStr);
                         ps.setBinaryStream(7,(InputStream)fis,(int)f.length());
                         int x =  ps.executeUpdate();

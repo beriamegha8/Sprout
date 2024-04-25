@@ -67,6 +67,7 @@ public class ViewStudents extends JFrame implements ActionListener{
         table.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         table.setPreferredScrollableViewportSize(table.getPreferredSize());
         table.setRowHeight(96);
+        table.setForeground(Color.BLACK);
         add(pane, BorderLayout.CENTER);
         
         deleteButton = new JButton("Delete");
@@ -84,13 +85,16 @@ public class ViewStudents extends JFrame implements ActionListener{
     private void getStudents(){
         DBConnection c1 = new DBConnection();
         try{
+            String q1 = "SELECT count(*) FROM student";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
             String q = "select * from Student";
             ResultSet rs = c1.s.executeQuery(q); 
             ResultSetMetaData rsmd = rs.getMetaData();
             int    columnCount  =  rsmd.getColumnCount();
-            int    rowCount = 0;
-            while (rs.next())
-                rowCount++;
+
             // The column count starts from 1
             columnNames = new String[columnCount];
             int CIndex = 1;
@@ -100,7 +104,6 @@ public class ViewStudents extends JFrame implements ActionListener{
             }
             data = new Object[rowCount][columnCount];
             int row = 0;
-            rs.beforeFirst();
             while (rs.next()) {
                 byte[] bytImage = null;
                 for (int c = 0 ; c < columnCount; c++) {
@@ -115,7 +118,6 @@ public class ViewStudents extends JFrame implements ActionListener{
             }
         }
         catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Error retriving students. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         finally{
@@ -158,7 +160,6 @@ public class ViewStudents extends JFrame implements ActionListener{
                     }
                 }
                 catch(HeadlessException | SQLException exception){
-                    JOptionPane.showMessageDialog(null, "Error deleting student. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                 }
                 finally{

@@ -1,5 +1,6 @@
 package sprout.Admin;
 
+import sprout.PasswordHasher;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ public class AdminChangePassword extends JFrame implements ActionListener{
     JLabel newPasswordlbl;
     JPasswordField newPassword;
     JButton updatePassbtn;
+    static PasswordHasher pwh;
     public AdminChangePassword(){
             newPasswordlbl = new JLabel("New Password");
             newPasswordlbl.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -49,7 +51,7 @@ public class AdminChangePassword extends JFrame implements ActionListener{
             try{
                 DBConnection c1 = new DBConnection();
 
-                String q = "update Admin SET password = '"+ password +"'"
+                String q = "update Admin SET password = '"+ pwh.hashPassword(password) +"'"
                         + "Where Adminid ='" + AdminLogin.currentAdminID + "'";
 
                 int x = c1.s.executeUpdate(q);

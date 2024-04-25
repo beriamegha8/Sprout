@@ -75,20 +75,24 @@ public class ViewMyStudents extends JFrame implements ActionListener{
         String[] Course_Names = null;
         try{
             DBConnection c1 = new DBConnection();
-            String q1  = "Select Name From Courses Where teacherID = '"+ TeacherLogin.currentTeacherID +"'";
-            ResultSet rs = c1.s.executeQuery(q1); 
-            int rowCount = 0;
-            while(rs.next())
-                rowCount++;
+            String q1 = "SELECT count(*) FROM Courses";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
+
+            String q2  = "Select Name From Courses Where teacherID = '"+ TeacherLogin.currentTeacherID +"'";
+            ResultSet rs = c1.s.executeQuery(q2); 
+
+            
             Course_Names = new String[rowCount];
-            rs.beforeFirst();
+
             int i=0;
             while(rs.next()){
                 Course_Names[i] = rs.getString("Name");
                 i++;
             }
         }catch(Exception e){
-            System.out.println(e);
             e.printStackTrace();
         }
         return Course_Names;
@@ -106,6 +110,11 @@ public class ViewMyStudents extends JFrame implements ActionListener{
             String courseName = selected.toString();
             try{
                 DBConnection c1 = new DBConnection();
+                String q1 = "SELECT count(*) FROM student";
+                ResultSet cnt = c1.s.executeQuery(q1);
+                cnt.next();
+                int rowCount = Integer.valueOf(cnt.getString(1));
+                cnt.close();
                 String q = "Select S.fname, S.lname, S.Email_ID, S.Registration_Date, S.Gender"
                         + " From Student As S"
                         + " Inner Join Enrollments As E ON E.stdID = S.stdID"
@@ -114,9 +123,7 @@ public class ViewMyStudents extends JFrame implements ActionListener{
                 ResultSet rs = c1.s.executeQuery(q); 
                 ResultSetMetaData rsmd = rs.getMetaData();
                 int    columnCount  =  rsmd.getColumnCount();
-                int    rowCount = 0;
-                while (rs.next())
-                    rowCount++;
+                
                 // The column count starts from 1
                 columnNames = new String[columnCount];
                 int CIndex = 1;
@@ -126,7 +133,7 @@ public class ViewMyStudents extends JFrame implements ActionListener{
                 }
                 data = new String[rowCount][columnCount];
                 int row = 0;
-                rs.beforeFirst();
+                
                 while (rs.next()) {
                     for (int c = 0 ; c < columnCount; c++) {
                       data[row][c] = rs.getString(columnNames[c]);
@@ -139,7 +146,6 @@ public class ViewMyStudents extends JFrame implements ActionListener{
                          model.addRow(data[r]);
                 }
             }catch(Exception e){
-                System.out.println(e);
                 e.printStackTrace();
             }
        }

@@ -27,7 +27,7 @@ public class EnrollCourse extends JFrame implements ActionListener{
     public EnrollCourse(){
         super("Enroll Course");
         setLayout(new BorderLayout());
-        
+        Color oliveGreen = new Color(85, 107, 47);
         title = new JLabel("Enroll Course", JLabel.CENTER);
         title.setFont(title.getFont().deriveFont (22.0f));
         title.setBackground(Color.LIGHT_GRAY);
@@ -49,6 +49,7 @@ public class EnrollCourse extends JFrame implements ActionListener{
         subjectsCb.setSelectedIndex(-1);
         subjectsCb.setBounds(200, 30, 140, 28);
         subjectsCb.addActionListener(this);
+        subjectsCb.setForeground(oliveGreen);
         middlePanel.add(subjectsCb);
         
         courseCbLbl = new JLabel("Select Course");
@@ -98,22 +99,22 @@ public class EnrollCourse extends JFrame implements ActionListener{
         String[] subjectsData = null;
         try{
             DBConnection c1 = new DBConnection();
+            String q1 = "SELECT count(*) FROM Subjects";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
+            String q2 = "select * from Subjects";
 
-            String q = "select * from Subjects";
-
-            ResultSet rs = c1.s.executeQuery(q);
-            int rowCount = 0;
-            while(rs.next())
-                rowCount++;
+            ResultSet rs = c1.s.executeQuery(q2);
             subjectsData = new String[rowCount];
-            rs.beforeFirst();
+
             int i=0;
             while(rs.next()){
                 subjectsData[i] = rs.getString("Name");
                 i++;
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error retrieving subjects. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         return subjectsData;
@@ -122,14 +123,18 @@ public class EnrollCourse extends JFrame implements ActionListener{
             String[] coursesData;
         try{
             DBConnection c1 = new DBConnection();
-            String q = "select * from Courses Where Subject_ID = '"+ subjectID +"'";
+            String q1 = "SELECT count(*) FROM courses";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
 
+            String q = "select * from Courses Where Subject_ID = '"+ subjectID +"'";
             ResultSet rs = c1.s.executeQuery(q);
-            int rowCount = 0;
-            while(rs.next())
-                rowCount++;
+
+            
             coursesData = new String[rowCount];
-            rs.beforeFirst();
+
             int i=0;
             while(rs.next()){
                 coursesData[i] = rs.getString("Name");
@@ -137,8 +142,8 @@ public class EnrollCourse extends JFrame implements ActionListener{
             }
             for(int j=0; j< coursesData.length ; j++)
                 coursesCb.addItem(coursesData[j]);
+            
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -151,14 +156,19 @@ public class EnrollCourse extends JFrame implements ActionListener{
             String subjectName = selected.toString();
             try{
                 DBConnection c1 = new DBConnection();
-                String q1  = "Select Subject_ID From Subjects Where Name = '"+ subjectName +"'";
-                ResultSet rs = c1.s.executeQuery(q1); 
+                String q1 = "SELECT count(*) FROM Subjects";
+                ResultSet cnt = c1.s.executeQuery(q1);
+                cnt.next();
+                int rowCount = Integer.valueOf(cnt.getString(1));
+                cnt.close();
+
+                String q2  = "Select Subject_ID From Subjects Where Name = '"+ subjectName +"'";
+                ResultSet rs = c1.s.executeQuery(q2); 
                 int subjectID;
                 rs.next();
                 subjectID = rs.getInt("Subject_ID");
                 this.getSetCourses(subjectID);
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
             }
         }
@@ -181,7 +191,6 @@ public class EnrollCourse extends JFrame implements ActionListener{
     //                scroll.setVisible(true);
                     courseDescription.setText(course_Description);
                 }catch(Exception e){
-                    JOptionPane.showMessageDialog(null, "Error retrieving desc. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     e.printStackTrace();
                 }
             }

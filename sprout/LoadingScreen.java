@@ -70,7 +70,7 @@ public class LoadingScreen extends JFrame{
     public void Run(){
         try{
             for(int i=0; i<=100; i++){
-                Thread.sleep(100);
+                Thread.sleep(10);
                 loadingBar.setValue(i);
                 percentageLbl.setText(i+ " %");
 

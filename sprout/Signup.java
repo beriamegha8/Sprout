@@ -41,14 +41,14 @@ public class Signup extends JFrame implements ActionListener{
         studentSignUpButton.setHorizontalAlignment(JButton.CENTER);
         studentSignUpButton.setBounds(115, 15, 130, 40);
         studentSignUpButton.setBackground(oliveGreen);
-        studentSignUpButton.setForeground(Color.WHITE);
+        studentSignUpButton.setForeground(oliveGreen);
         
         teacherSignUpButton = new  JButton("Teacher SignUp");
         teacherSignUpButton.addActionListener((ActionListener) this);
         teacherSignUpButton.setHorizontalAlignment(JButton.CENTER);
         teacherSignUpButton.setBounds(115, 95, 130, 40);
         teacherSignUpButton.setBackground(oliveGreen);
-        teacherSignUpButton.setForeground(Color.WHITE);
+        teacherSignUpButton.setForeground(oliveGreen);
 
         
         

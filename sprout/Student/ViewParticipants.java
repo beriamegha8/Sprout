@@ -93,23 +93,29 @@ public class ViewParticipants extends JFrame implements ActionListener{
         String[] Course_Names = null;
         try{
             DBConnection c1 = new DBConnection();
+
+            String q1 = "SELECT count(*) FROM Courses as C Inner Join Enrollments As E ON E.course_ID = C.course_ID where E.stdID = '"+
+                        StudentLogin.currentStudentID+"'";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
+
             String q = "Select C.Name From Courses As C"
                         + " Inner Join Enrollments As E ON E.course_ID = C.course_ID"
                         + " Where E.stdID = '"+ StudentLogin.currentStudentID+"'";
             
             ResultSet rs = c1.s.executeQuery(q);
-            int rowCount = 0;
-            while(rs.next())
-                rowCount++;
+ 
+            
             Course_Names = new String[rowCount];
-            rs.beforeFirst();
+            
             int i=0;
             while(rs.next()){
                 Course_Names[i] = rs.getString("Name");
                 i++;
             }
         }catch(Exception e){
-            System.out.println("Error in getMyCourses");
             e.printStackTrace();
         }
         return Course_Names;
@@ -125,6 +131,17 @@ public class ViewParticipants extends JFrame implements ActionListener{
             String courseName = selected.toString();
             try{
                 DBConnection c1 = new DBConnection();
+
+                String q1 = "Select S.stdID, S.fname, S.lname, S.Email_ID, S.Last_Login"
+                + " From Student As S"
+                + " Inner Join Enrollments As E ON E.stdID = S.stdID"
+                + " Where E.course_ID = (select course_ID From Courses Where Name = '"+ courseName +"')"
+                + " And S.stdID <> '"+ StudentLogin.currentStudentID +"'";
+                ResultSet cnt = c1.s.executeQuery(q1);
+                cnt.next();
+                int StdrowCount = Integer.valueOf(cnt.getString(1));
+                cnt.close();
+
                 String q = "Select S.stdID, S.fname, S.lname, S.Email_ID, S.Last_Login"
                         + " From Student As S"
                         + " Inner Join Enrollments As E ON E.stdID = S.stdID"
@@ -132,12 +149,11 @@ public class ViewParticipants extends JFrame implements ActionListener{
                         + " And S.stdID <> '"+ StudentLogin.currentStudentID +"'";
 
                 ResultSet rs = c1.s.executeQuery(q);
-                int StdrowCount = 0;
+
                 String[][] Studentdata;
-                while (rs.next())
-                    StdrowCount++;
+                
                 Studentdata = new String[StdrowCount][5];
-                rs.beforeFirst();
+
                 int rowCount = 0;
                 while (rs.next()) {
                     Studentdata[rowCount][0] = rs.getString(1);
@@ -176,7 +192,6 @@ public class ViewParticipants extends JFrame implements ActionListener{
                          model.addRow(Studentdata[r]);
                 }
             }catch(Exception e){
-                System.out.println("Error retriving courses. Please try again later.");
                 e.printStackTrace();
             }
         }

@@ -1,5 +1,5 @@
 package sprout.Student;
-
+import sprout.PasswordHasher;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
@@ -43,6 +43,7 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
     FileInputStream fis = null;
     File f = null;
     Color oliveGreen = new Color(85, 107, 47);
+    static PasswordHasher pwh;
     public StudentSignUp() {
         super("Student SignUp");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -64,7 +65,7 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
         uploadPicBtn.addActionListener(this);
         contentPane.add(uploadPicBtn);
         uploadPicBtn.setBackground(oliveGreen);
-        uploadPicBtn.setForeground(Color.white);
+        uploadPicBtn.setForeground(oliveGreen);
 
 
         JLabel lblName = new JLabel("First name");
@@ -164,7 +165,7 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
         registerButton.addActionListener((ActionListener) this);
         contentPane.add(registerButton);
         registerButton.setBackground(oliveGreen);
-        registerButton.setForeground(Color.white);
+        registerButton.setForeground(oliveGreen);
         
         setVisible(true);
     }
@@ -201,7 +202,6 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
                 fis = new FileInputStream(image);
                 profilePicLbl.setIcon(resizeImage(fname));
             } catch (Exception exception) {
-                JOptionPane.showMessageDialog(null, "Error adding profile picture. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }
@@ -235,7 +235,7 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
                         ps.setString(2, lastName);
                         ps.setString(3, emailId);
                         ps.setString(4, userName);
-                        ps.setString(5, password);
+                        ps.setString(5, pwh.hashPassword(password));
                         ps.setDate(6, sqlDate);
                         ps.setString(7, genderStr);
                         ps.setBinaryStream(8,(InputStream)fis,(int)f.length());
@@ -249,7 +249,6 @@ public class StudentSignUp extends JFrame implements ActionListener, FocusListen
                             new StudentLogin();
                         }
                     }catch(Exception e){
-                        JOptionPane.showMessageDialog(null, e);
                         e.printStackTrace();
                     }
                 }

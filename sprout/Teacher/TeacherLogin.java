@@ -1,5 +1,6 @@
 package sprout.Teacher;
 
+import sprout.PasswordHasher;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.HeadlessException;
@@ -24,6 +25,7 @@ public class TeacherLogin extends JFrame implements ActionListener{
     JTextField t1;
     JPasswordField t2;
     JButton b1,b2;
+    static PasswordHasher pwh;
     public static int currentTeacherID;
     public TeacherLogin(){
         super("Teacher Login");
@@ -59,14 +61,14 @@ public class TeacherLogin extends JFrame implements ActionListener{
         b1.setFont(new Font("serif",Font.BOLD,15));
         b1.addActionListener(this);
         b1.setBackground(oliveGreen);
-        b1.setForeground(Color.WHITE);
+        b1.setForeground(oliveGreen);
         add(b1);
 
         b2=new JButton("Cancel");
         b2.setBounds(180,140,120,30);
         b2.setFont(new Font("serif",Font.BOLD,15));
         b2.setBackground(oliveGreen);
-        b2.setForeground(Color.WHITE);
+        b2.setForeground(oliveGreen);
         add(b2);
         b2.addActionListener(this);
         
@@ -85,7 +87,7 @@ public class TeacherLogin extends JFrame implements ActionListener{
                 String u = t1.getText();
                 String v = String.valueOf(t2.getPassword());
 
-                String q = "select * from Teacher where username='"+u+"' and password='"+v+"'";
+                String q = "select * from Teacher where username='"+u+"' and password='"+pwh.hashPassword(v)+"'";
 
                 ResultSet rs = c1.s.executeQuery(q);
                 if(rs.next()){
@@ -98,7 +100,6 @@ public class TeacherLogin extends JFrame implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Invalid login");
                 }
         }catch(HeadlessException | NumberFormatException | SQLException e){
-            JOptionPane.showMessageDialog(null, "Error loging into account. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             }
         }

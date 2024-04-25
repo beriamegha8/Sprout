@@ -24,7 +24,7 @@ public class StudyCourse extends JFrame implements ActionListener{
     public StudyCourse(){
         super("Study Course");
         setLayout(new BorderLayout());
-        
+        Color oliveGreen = new Color(85, 107, 47);
         title = new JLabel("Study Course", JLabel.CENTER);
         title.setFont(title.getFont().deriveFont (22.0f));
         title.setBackground(Color.LIGHT_GRAY);
@@ -43,11 +43,14 @@ public class StudyCourse extends JFrame implements ActionListener{
         courseCbLbl.setHorizontalAlignment(JLabel.LEFT);
         middlePanel.add(courseCbLbl);
         
-
-        coursesCb = new JComboBox(this.getCourses());
+        String[] manual = this.getCourses();
+        System.out.println(manual);
+        coursesCb = new JComboBox(manual);
         coursesCb.setSelectedIndex(-1);
         coursesCb.setBounds(200, 80, 140, 28);
         coursesCb.addActionListener(this);
+        coursesCb.setForeground(oliveGreen);
+
         middlePanel.add(coursesCb);
         
         
@@ -63,6 +66,7 @@ public class StudyCourse extends JFrame implements ActionListener{
         scroll = new JScrollPane(courseContent);
         scroll.setBounds(10, 190, 570, 180);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+        courseContent.setForeground(oliveGreen);
         courseContent.setEditable(false);
         middlePanel.add(scroll);
        
@@ -78,23 +82,27 @@ public class StudyCourse extends JFrame implements ActionListener{
             String[] coursesData = null;
             try{
                 DBConnection c1 = new DBConnection();
-                String q = "Select C.Name From Courses As C"
+                String q1 = "SELECT count(*) FROM Courses";
+                ResultSet cnt = c1.s.executeQuery(q1);
+                cnt.next();
+                int count = Integer.valueOf(cnt.getString(1));
+                cnt.close();
+
+                String q2 = "Select C.Name From Courses As C"
                         + " Inner Join Enrollments As E ON E.course_ID = C.course_ID"
                         + " Where E.stdID = '"+ StudentLogin.currentStudentID+"'";
 
-                ResultSet rs = c1.s.executeQuery(q);
-                int rowCount = 0;
-                while(rs.next())
-                    rowCount++;
-                coursesData = new String[rowCount];
-                rs.beforeFirst();
+                ResultSet rs = c1.s.executeQuery(q2);
+                
+              
+                coursesData = new String[count];
                 int i=0;
                 while(rs.next()){
                     coursesData[i] = rs.getString("Name");
+                    System.out.println(coursesData[i]);
                     i++;
                 }
             }catch(Exception e){
-                System.out.println("Error retriving courses. Please try again later.");
                 e.printStackTrace();
             }
         return coursesData;
@@ -114,7 +122,6 @@ public class StudyCourse extends JFrame implements ActionListener{
                 courseContent.setText(course_Content);
                 
             }catch(Exception e){
-                System.out.println("Error retriving courses. Please try again later.");
                 e.printStackTrace();
             }
         }

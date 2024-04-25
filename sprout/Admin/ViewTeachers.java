@@ -84,13 +84,18 @@ public class ViewTeachers extends JFrame implements ActionListener{
     private void getTeachers(){
         DBConnection c1 = new DBConnection();
         try{
+            String q1 = "SELECT count(*) FROM teacher";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
+
             String q = "select * from Teacher";
             ResultSet rs = c1.s.executeQuery(q); 
             ResultSetMetaData rsmd = rs.getMetaData();
             int    columnCount  =  rsmd.getColumnCount();
-            int    rowCount = 0;
-            while (rs.next())
-                rowCount++;
+
+            
             // The column count starts from 1
             columnNames = new String[columnCount];
             int CIndex = 1;
@@ -100,7 +105,7 @@ public class ViewTeachers extends JFrame implements ActionListener{
             }
             data = new Object[rowCount][columnCount];
             int row = 0;
-            rs.beforeFirst();
+
             while (rs.next()) {
                 byte[] bytImage = null;
                 for (int c = 0 ; c < columnCount; c++) {
@@ -115,7 +120,6 @@ public class ViewTeachers extends JFrame implements ActionListener{
             }
         }
         catch(SQLException e){
-            System.err.println(e);
             e.printStackTrace();
         }
         finally{

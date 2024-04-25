@@ -95,20 +95,23 @@ public class UpdateCourses extends JFrame implements ActionListener{
         String data[] = null;
     try{
         DBConnection c1 = new DBConnection();
-        String q1  = "Select Course_ID, Name From Courses Where teacherID = '"+ TeacherLogin.currentTeacherID +"'";
-        ResultSet rs = c1.s.executeQuery(q1);
-        int rowCount = 0;
-        while (rs.next())
-            rowCount++;
+        String q1 = "SELECT count(*) FROM Courses";
+        ResultSet cnt = c1.s.executeQuery(q1);
+        cnt.next();
+        int rowCount = Integer.valueOf(cnt.getString(1));
+        cnt.close();
+        String q2  = "Select Course_ID, Name From Courses Where teacherID = '"+ TeacherLogin.currentTeacherID +"'";
+        ResultSet rs = c1.s.executeQuery(q2);
+
+        
         data = new String[rowCount];
         int row = 0;
-        rs.beforeFirst();
+
         while (rs.next()) {
             data[row] = rs.getString("Name");
             row++;
         }
     }catch(Exception e){
-        JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
         e.printStackTrace();
         }
         return data;
@@ -129,7 +132,6 @@ public class UpdateCourses extends JFrame implements ActionListener{
                 courseContent.setText(rs.getString("Content"));
                 
             }catch(Exception exception){
-                JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 exception.printStackTrace();
             }
         }

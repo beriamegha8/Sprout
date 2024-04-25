@@ -69,13 +69,17 @@ public class ViewMyCourses extends JFrame implements ActionListener{
     private void getMyCourses(){
         try{
             DBConnection c1 = new DBConnection();
-            String q1  = "Select Course_ID, Name From Courses Where teacherID = '"+ TeacherLogin.currentTeacherID +"'";
-            ResultSet rs = c1.s.executeQuery(q1); 
+            String q1 = "SELECT count(*) FROM Courses";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
+
+            String q2  = "Select Course_ID, Name From Courses Where teacherID = '"+ TeacherLogin.currentTeacherID +"'";
+            ResultSet rs = c1.s.executeQuery(q2); 
             ResultSetMetaData rsmd = rs.getMetaData();
             int    columnCount  =  rsmd.getColumnCount();
-            int    rowCount = 0;
-            while (rs.next())
-                rowCount++;
+            
             // The column count starts from 1
             columnNames = new String[columnCount];
             int CIndex = 1;
@@ -85,7 +89,7 @@ public class ViewMyCourses extends JFrame implements ActionListener{
             }
             data = new String[rowCount][columnCount];
             int row = 0;
-            rs.beforeFirst();
+
             while (rs.next()) {
                 for (int c = 0 ; c < columnCount; c++) {
                   data[row][c] = rs.getString(columnNames[c]);
@@ -93,7 +97,6 @@ public class ViewMyCourses extends JFrame implements ActionListener{
                 row++;
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error retriving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -120,7 +123,6 @@ public class ViewMyCourses extends JFrame implements ActionListener{
                     }
                 }
                 catch(HeadlessException | SQLException exception){
-                    JOptionPane.showMessageDialog(null, "Error deleting course. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                     exception.printStackTrace();
                 }
             }

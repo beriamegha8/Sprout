@@ -63,24 +63,26 @@ public class WithdrawCourse extends JFrame implements ActionListener{
         String[] courseData = null;
         try{
             DBConnection c1 = new DBConnection();
+            String q1 = "SELECT count(*) FROM courses";
+            ResultSet cnt = c1.s.executeQuery(q1);
+            cnt.next();
+            int rowCount = Integer.valueOf(cnt.getString(1));
+            cnt.close();
 
             String q = "select C.Name from Courses As C"
                     + " Inner Join Enrollments As E ON E.course_ID = C.course_ID"
                     + " Where E.stdID = '"+ StudentLogin.currentStudentID +"'";
 
             ResultSet rs = c1.s.executeQuery(q);
-            int rowCount = 0;
-            while(rs.next())
-                rowCount++;
+            
             courseData = new String[rowCount];
-            rs.beforeFirst();
+
             int i=0;
             while(rs.next()){
                 courseData[i] = rs.getString("Name");
                 i++;
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "Error retrieving courses. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         return courseData;
@@ -107,7 +109,6 @@ public class WithdrawCourse extends JFrame implements ActionListener{
                         dispose();
                     }
             }catch(Exception e){
-                JOptionPane.showMessageDialog(null, "Error withdrawing course. Please try again later.", "Error", JOptionPane.ERROR_MESSAGE);
                 e.printStackTrace();
                 }
             }

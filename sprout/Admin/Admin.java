@@ -77,7 +77,6 @@ public class Admin extends JFrame implements ActionListener, WindowStateListener
             }
             ps.close();
         }catch(HeadlessException | NumberFormatException | SQLException e){
-            JOptionPane.showMessageDialog(null, e);
             e.printStackTrace();
         }
         
