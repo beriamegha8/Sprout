@@ -26,6 +26,7 @@ public class LoadingScreen extends JFrame{
         mainPanel.setLayout(null);
         add(mainPanel, BorderLayout.CENTER);
 
+        
         loadingLbl = new JLabel("Loading...");
         loadingLbl.setHorizontalAlignment(JLabel.LEFT);
         loadingLbl.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));

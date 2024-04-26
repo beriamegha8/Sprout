@@ -216,6 +216,7 @@ public class EnrollCourse extends JFrame implements ActionListener{
                         JOptionPane.showMessageDialog(null, "Course Enrollement Successfull!");
                         dispose();
                     }
+                    
                 }catch(Exception e){
                     JOptionPane.showMessageDialog(null, "You are Already Enrolled in this Course!");
                     e.printStackTrace();
